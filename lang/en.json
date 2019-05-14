@@ -1,0 +1,10 @@
+{
+  "commands": {
+    "help": "Displays your secrets. j-just kidding.",
+    "eval": "Eval script or Be evil script?",
+    "nsfw": "Grants role that you can see nsfw channels, if guild has supported."
+  },
+  "no_command": "what's this command?",
+  "yes": "Yes",
+  "no": "No"
+}
