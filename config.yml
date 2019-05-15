@@ -1,7 +1,0 @@
-token: "NTc3NTczOTA4Njk0NDMzODUz.XNnBrQ.6XOlocPBBvFZiQ7vNGq2mGZk8H8"
-prefix: "b!"
-database:
-  type: "sqlite" # mysql or sqlite
-  name: "blacklistenerv2"
-  user: "root"
-  pass: "password"
