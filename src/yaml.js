@@ -1,4 +1,4 @@
-const YAML = require('yaml').default
+const YAML = require('yaml')
 const fs = require('fs')
 
 require.extensions['.yml'] = function(module, filename) {

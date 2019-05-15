@@ -1,7 +1,7 @@
 token: "your secret token that we can see your mind"
 prefix: "b!"
 database:
-  type: "mysql" # mysql or sqlite
+  type: "sqlite" # mysql or sqlite
   name: "blacklistenerv2"
   user: "not_root_at_all"
   pass: "change_my_mind"

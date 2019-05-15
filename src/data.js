@@ -5,10 +5,10 @@ logger.info('Connecting...')
 const Sequelize = require('sequelize')
 const Op = Sequelize.Op
 const config = require('../config.yml')
-const sequelize = new Sequelize(config.database.name, config.database.user, config.database.pass, {
+const sequelize = new Sequelize.Sequelize(config.database.name, config.database.user, config.database.pass, {
   host: 'localhost',
   dialect: config.database.type,
-  storage: `${__dirname}/../data/database.sqlite`,
+  storage: `${__dirname}/../database.sqlite`,
   logging: false,
 })
 sequelize.authenticate()
@@ -55,34 +55,28 @@ const User = sequelize.define('users', {
     type: Sequelize.BOOLEAN,
     defaultValue: false,
   },
-  point: {
-    type: Sequelize.INTEGER,
-    defaultValue: 0,
-  },
   tag: {
     type: Sequelize.STRING,
     defaultValue: 'Unknown User#0000',
   },
-  pp: {
-    type: Sequelize.INTEGER,
-    defaultValue: 0,
-  },
 })
-const Multipliers = sequelize.define('multipliers', {
-  multiplier_id: {
+const Bans = sequelize.define('bans', {
+  ban_id: {
     type: Sequelize.INTEGER,
     primaryKey: true,
     autoIncrement: true,
   },
   server_id: {
     type: Sequelize.STRING,
-    allowNull: true,
   },
   user_id: {
     type: Sequelize.STRING,
   },
-  multiplier: {
-    type: Sequelize.INTEGER,
+  reason: {
+    type: Sequelize.STRING,
+  },
+  evidences: {
+    type: Sequelize.STRING,
   },
   expires: {
     type: Sequelize.DATE,
@@ -109,86 +103,29 @@ module.exports = {
   updateUserTag(user_id, tag) {
     return User.update({ tag }, { where: { user_id } })
   },
-  addServerPoint(server_id, point) {
-    return Server.increment(['point'], {
-      by: point,
-      where: { server_id },
+  getBan(ban_id) {
+    return Bans.findOne({
+      where: { ban_id },
     })
   },
-  addUserPoint(user_id, point) {
-    return User.increment(['point'], {
-      by: point,
-      where: { user_id },
-    })
-  },
-  addUserpp(user_id, point) {
-    return User.increment(['pp'], {
-      by: point,
-      where: { user_id },
-    })
-  },
-  setServerPoint(user_id, point) {
-    return Server.update(['point'], {
-      by: point,
-      where: { user_id },
-    })
-  },
-  setUserPoint(user_id, point) {
-    return User.update(['point'], {
-      by: point,
-      where: { user_id },
-    })
-  },
-  subtractUserPoint(user_id, point) {
-    return User.decrement(['point'], {
-      by: point,
-      where: { user_id },
-    })
-  },
-  getServerLeaderboard() {
-    return Server.findAll({
-      attributes: ['server_id', 'point'],
-      order: [['point', 'DESC']],
-      limit: 5,
-    })
-  },
-  getUserLeaderboard() {
-    return User.findAll({
-      attributes: ['user_id', 'point'],
-      order: [['point', 'DESC']],
-      limit: 5,
-    })
-  },
-  getppUserLeaderboard() {
-    return User.findAll({
-      attributes: ['user_id', 'pp'],
-      order: [['pp', 'DESC']],
-      limit: 5,
-    })
-  },
-  getMultiplier(multiplier_id) {
-    return Multipliers.findOne({
-      where: { multiplier_id },
-    })
-  },
-  getUserMultipliers(user_id) {
-    return Multipliers.findAll({
+  getUserBans(user_id) {
+    return Bans.findAll({
       where: {
         user_id,
         server_id: null,
       },
     })
   },
-  getServerMultipliers(server_id) {
-    return Multipliers.findAll({
+  getServerBans(server_id) {
+    return Bans.findAll({
       where: {
         server_id,
         [Op.not]: { server_id: null },
       },
     })
   },
-  getActivatedMultipliers(server_id) {
-    return Multipliers.findAll({
+  getServerActiveBans(server_id) {
+    return Bans.findAll({
       where: {
         server_id,
         expires: {
@@ -198,16 +135,16 @@ module.exports = {
       },
     })
   },
-  countUserMultipliers(user_id) {
-    return Multipliers.count({
+  countUserBans(user_id) {
+    return Bans.count({
       where: {
         user_id,
         server_id: null,
       },
     })
   },
-  countActivatedMultipliers(server_id) {
-    return Multipliers.count({
+  countServerActiveBans(server_id) {
+    return Bans.count({
       where: {
         server_id,
         expires: {
@@ -217,14 +154,7 @@ module.exports = {
       },
     })
   },
-  addMultiplier(user_id, multiplier) {
-    return Multipliers.create({ user_id, multiplier })
-  },
-  activateMultiplier(multiplier_id, server_id, expires) {
-    return Multipliers.update({
-      server_id, expires,
-    }, {
-      where: { multiplier_id },
-    })
+  addBan(user_id, server_id, reason, evidences) {
+    return Bans.create({ user_id, server_id, reason, evidences })
   },
 }
