@@ -16,11 +16,13 @@ client.on('ready', () => {
 })
 
 client.on('message', async msg => {
-  if (msg.author.bot || msg.system) return
   const guild = await data.getServer(msg.guild.id).then(g => g.toJSON())
+  const user = await data.getUser(msg.author.id).then(u => u.toJSON())
+  if (user.tag !== msg.author.tag) data.updateUserTag(msg.author.id, msg.author.tag)
+  if (msg.author.bot || msg.system) return
   if (msg.content.startsWith(guild.prefix)) {
     logger.info(`${msg.author.tag} sent command: ${msg.content}`)
-    dispatcher(msg, languages.en, guild.prefix, ['575673035743559701', '269500497327685633'], guild.prefix)
+    dispatcher(msg, languages[user.language || guild.language || config.prefix], guild.prefix, ['575673035743559701', '269500497327685633'], guild.prefix)
   }
 })
 

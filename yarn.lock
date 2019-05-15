@@ -120,7 +120,7 @@ bluebird@^3.5.0, bluebird@^3.5.3:
 
 bot-framework@acrylic-style/bot-framework:
   version "1.0.0"
-  resolved "https://codeload.github.com/acrylic-style/bot-framework/tar.gz/559314ddb8b877280b83d056fa3fb7fe6ad4cecc"
+  resolved "https://codeload.github.com/acrylic-style/bot-framework/tar.gz/085adf19745414908fbcd96e7ab12ef88da26a06"
   dependencies:
     discord.js "^11.4.2"
     emojilib "^2.4.0"
