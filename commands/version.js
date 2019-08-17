@@ -1,5 +1,5 @@
 const { Command } = require('bot-framework')
-const pkg = { name: 'BlackListener', version: '2.0.1', repository: 'https://github.com/BlackListener/BlackListener-v2' }
+const pkg = require('../package')
 const git = require('simple-git/promise')
 
 module.exports = class extends Command {
@@ -9,9 +9,10 @@ module.exports = class extends Command {
 
   async run(msg, lang, args, sendDeletable) {
     const application = await msg.client.fetchApplication()
-    const tag = application.owner.discriminator === '0000' ? '<Owned by Team>' : application.owner.tag
+    const tag = application.owner.discriminator === '0000' ? '<Unknown>' : application.owner.tag
     sendDeletable(`${pkg.name} v${pkg.version} @ ${(await git().revparse(['HEAD'])).slice(0, 7)}
-     - Source Code: ${pkg.repository}
-     - Bot owner: \`${tag}\` (ID: ${application.owner.id})`)
+     - Source Code: ${(await git().getRemotes())[0].refs}
+     - Bot owner: \`${tag}\` (ID: ${application.owner.id})
+     - Invite bot: https://discordapp.com/oauth2/authorize?scope=bot&client_id=${msg.client.user.id}&permissions=8`)
   }
 }

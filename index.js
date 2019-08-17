@@ -22,7 +22,7 @@ client.on('message', async msg => {
   if (msg.author.bot || msg.system) return
   if (msg.content.startsWith(guild.prefix)) {
     logger.info(`${msg.author.tag} sent command: ${msg.content}`)
-    dispatcher(msg, languages[user.language || guild.language || config.prefix], guild.prefix, ['575673035743559701', '269500497327685633'], guild.prefix)
+    dispatcher(msg, languages[user.language || guild.language || config.prefix], guild.prefix, config.owners, guild.prefix)
   }
 })
 

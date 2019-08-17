@@ -1,8 +1,8 @@
 {
   "commands": {
-    "help": "Displays your secrets. j-just kidding.",
-    "eval": "Eval script or Be evil script?",
-    "nsfw": "Grants role that you can see nsfw channels, if guild has supported."
+    "help": "Displays this help message.",
+    "eval": "Eval script.",
+    "version": "Displays version and information."
   },
   "no_command": "what's this command?",
   "youdonthaveperm": "Seems like you don't have permission to do this.",

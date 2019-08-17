@@ -1,15 +1,39 @@
 {
   "dependencies": {
-    "bot-framework": "acrylic-style/bot-framework",
+    "bot-framework": "github:acrylic-style/bot-framework",
     "discord.js": "^11.5.0",
     "emojilib": "^2.4.0",
-    "logger.js": "acrylic-style/logger.js",
+    "logger.js": "github:acrylic-style/logger.js",
     "minimist": "^1.2.0",
     "sequelize": "^5.8.6",
-    "yaml": "^1.5.1"
+    "yaml": "^1.5.1",
+    "mysql2": "^1.6.5",
+    "sqlite3": "^4.0.8"
   },
   "optionalDependencies": {
     "mysql2": "^1.6.5",
     "sqlite3": "^4.0.8"
-  }
+  },
+  "name": "blacklistener-v2",
+  "description": "A new BlackListener",
+  "version": "2.0.1",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BlackListener/BlackListener-v2.git"
+  },
+  "keywords": [
+    "blacklistener",
+    "discord"
+  ],
+  "author": "acrylic-style",
+  "license": "LGPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/BlackListener/BlackListener-v2/issues"
+  },
+  "homepage": "https://github.com/BlackListener/BlackListener-v2#readme"
 }
