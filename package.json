@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "bot-framework": "github:acrylic-style/bot-framework",
+    "bot-framework": "acrylic-style/bot-framework",
     "discord.js": "^11.5.0",
     "emojilib": "^2.4.0",
     "eslint": "^6.5.1",

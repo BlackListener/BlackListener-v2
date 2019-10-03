@@ -1,29 +1,27 @@
-require('./src/yaml')
 const { LoggerFactory } = require('logger.js')
-const logger = LoggerFactory.getLogger('main', 'cyan')
-const config = require('./config.yml')
-const languages = {
-  en: require('./lang/en.json'),
+const logger = LoggerFactory.getLogger('main', 'blue')
+const { AtomicReference } = require('bot-framework')
+const client = new AtomicReference()
+
+const start = async () => {
+  logger.info('Booting...')
+  await client.set(require('./client'))
+  if (await client.get() === null || await client.get() === undefined) logger.warn('client is null')
 }
-const data = require('./src/data')
-const dispatcher = require('bot-framework/dispatcher')
-const Discord = require('discord.js')
-const client = new Discord.Client()
 
-client.on('ready', () => {
-  client.user.setActivity(`${config.prefix}help | ${client.guilds.size} guilds`)
-  logger.info('Bot is ready!')
-})
+const stop = async () => {
+  await (await client.get()).destroy()
+  logger.info('Bot has been stopped.')
+  await client.set(null)
+  Object.keys(require.cache).forEach(e => { !e.endsWith('.js') || delete require.cache[e]})
+}
 
-client.on('message', async msg => {
-  const guild = await data.getServer(msg.guild.id).then(g => g.toJSON())
-  const user = await data.getUser(msg.author.id).then(u => u.toJSON())
-  if (user.tag !== msg.author.tag) data.updateUserTag(msg.author.id, msg.author.tag)
-  if (msg.author.bot || msg.system) return
-  if (msg.content.startsWith(guild.prefix)) {
-    logger.info(`${msg.author.tag} sent command: ${msg.content}`)
-    dispatcher(msg, languages[user.language || guild.language || config.prefix], guild.prefix, config.owners, guild.prefix)
-  }
-})
+const restart = async () => {
+  logger.info('Restarting!')
+  await stop()
+  await start()
+}
 
-client.login(config.token)
+process.on('restart', () => restart())
+
+start()

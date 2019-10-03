@@ -171,12 +171,13 @@ bluebird@^3.5.0, bluebird@^3.5.3:
   resolved "https://registry.yarnpkg.com/bluebird/-/bluebird-3.5.4.tgz#d6cc661595de30d5b3af5fcedd3c0b3ef6ec5714"
   integrity sha512-FG+nFEZChJrbQ9tIccIfZJBz3J7mLrAhxakAbnrJWn8d7aKOC+LWifa0G+p4ZqKp4y13T7juYvdhq9NzKdsrjw==
 
-"bot-framework@github:acrylic-style/bot-framework":
+bot-framework@acrylic-style/bot-framework:
   version "1.0.0"
-  resolved "https://codeload.github.com/acrylic-style/bot-framework/tar.gz/b83127e6b5e1fec024192c5d9d5c6033781a2486"
+  resolved "https://codeload.github.com/acrylic-style/bot-framework/tar.gz/fcb8fab9ac019209e983d28086c523a1ccef3dbe"
   dependencies:
     discord.js "^11.4.2"
     emojilib "^2.4.0"
+    eslint "^6.5.1"
     minimist "^1.2.0"
     simple-git "^1.113.0"
 
