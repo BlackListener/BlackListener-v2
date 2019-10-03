@@ -3,12 +3,13 @@
     "bot-framework": "github:acrylic-style/bot-framework",
     "discord.js": "^11.5.0",
     "emojilib": "^2.4.0",
-    "logger.js": "github:acrylic-style/logger.js",
+    "eslint": "^6.5.1",
+    "logger.js": "acrylic-style/logger.js",
     "minimist": "^1.2.0",
-    "sequelize": "^5.8.6",
-    "yaml": "^1.5.1",
     "mysql2": "^1.6.5",
-    "sqlite3": "^4.0.8"
+    "sequelize": "^5.8.6",
+    "sqlite3": "^4.0.8",
+    "yaml": "^1.5.1"
   },
   "optionalDependencies": {
     "mysql2": "^1.6.5",

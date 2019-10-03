@@ -25,7 +25,7 @@ module.exports = {
     'valid-typeof': 0,
     'no-restricted-syntax': [2, {
       selector: 'TryStatement',
-      message: 'try...catch statement is not allowed',
+      message: 'try statement is not allowed',
     }],
     'no-control-regex': 0,
     'no-useless-escape': 0,
