@@ -2,11 +2,12 @@ const { Command } = require('bot-framework')
 const YAML = require('yaml')
 const fs = require('fs').promises
 const deleteCache = require('../src/functions/deleteCache')
+const temp = require('../src/temp')
 
 module.exports = class extends Command {
   constructor() {
     const opts = {
-      args: ['config get/set/list [get/set:id] [set:value]'],
+      args: ['config get/set/list [get/set:id] [set:value]', 'restart'],
       permission: 8,
       requiredOwner: true,
     }
@@ -37,6 +38,20 @@ module.exports = class extends Command {
           return sendDeletable('Not found config key, valid keys are: ' + Object.keys(config).map(c => `\`${c}\``).join(', '))
         sendDeletable(`Current config of \`${args[3]}\`: \`${config[args[3]].toString().replace(msg.client.token, '<token>')}\``)
       } else return sendDeletable('Not correct args, please see the help. (help fuck)')
+    } else if (args[1] === 'restart') {
+      if (args[2] === '+force') {
+        await msg.channel.send(':wave: (You\'ve +force\'d, it\'s not recommended!)')
+        process.emit('restart')
+        return
+      }
+      const message = await msg.channel.send('Waiting for finish...')
+      const interval = setInterval(async () => {
+        if (temp.processing < 3) {
+          clearInterval(interval)
+          await message.edit(':wave:')
+          process.emit('restart')
+        }
+      }, 100)
     } else return sendDeletable('Not correct args, please see the help. (help fuck)')
   }
 }

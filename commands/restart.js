@@ -7,8 +7,8 @@ module.exports = class extends Command {
   }
 
   async run(msg, lang, args) {
-    if (args[1] === '--force') {
-      await msg.channel.send(':wave: (You\'ve --force\'d, it\'s not recommended!)')
+    if (args[1] === '+force') {
+      await msg.channel.send(':wave: (You\'ve +force\'d, it\'s not recommended!)')
       process.emit('restart')
       return
     }
