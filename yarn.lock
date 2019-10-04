@@ -173,13 +173,14 @@ bluebird@^3.5.0, bluebird@^3.5.3:
 
 bot-framework@acrylic-style/bot-framework:
   version "1.0.0"
-  resolved "https://codeload.github.com/acrylic-style/bot-framework/tar.gz/fcb8fab9ac019209e983d28086c523a1ccef3dbe"
+  resolved "https://codeload.github.com/acrylic-style/bot-framework/tar.gz/53128788abb68872dbec93d05bf508b8f168216f"
   dependencies:
     discord.js "^11.4.2"
     emojilib "^2.4.0"
     eslint "^6.5.1"
     minimist "^1.2.0"
     simple-git "^1.113.0"
+    typescript-eslint "^0.0.1-alpha.0"
 
 brace-expansion@^1.1.7:
   version "1.1.11"
@@ -1581,6 +1582,11 @@ type-check@~0.3.2:
   integrity sha1-WITKtRLPHTVeP7eE8wgEsrUg23I=
   dependencies:
     prelude-ls "~1.1.2"
+
+typescript-eslint@^0.0.1-alpha.0:
+  version "0.0.1-alpha.0"
+  resolved "https://registry.yarnpkg.com/typescript-eslint/-/typescript-eslint-0.0.1-alpha.0.tgz#285d68a4e96588295cd436278801bcb6a6b916c1"
+  integrity sha512-1hNKM37dAWML/2ltRXupOq2uqcdRQyDFphl+341NTPXFLLLiDhErXx8VtaSLh3xP7SyHZdcCgpt9boYYVb3fQg==
 
 uri-js@^4.2.2:
   version "4.2.2"
